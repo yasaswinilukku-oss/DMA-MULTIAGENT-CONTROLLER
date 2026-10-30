@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+node_modules/
+frontend/dist/
+hardware/simulation/*.vvp
+hardware/simulation/*.vcd
+reports/.tmp/
+reports/dma_history.json
+reports/bot_status.json
+.DS_Store
+!hardware/simulation/dma_waves.vcd
