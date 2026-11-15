@@ -1,4 +1,4 @@
-# Ishal - Algorithm Lead
+# Vishal - Algorithm Lead
 
 Status: **Contribution pending**
 
