@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DMA Analytics — Dada Khalandar</title>
+  <style>
+    :root { --bg:#0f172a; --card:#1e293b; --text:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; --ok:#34d399; }
+    body { margin:0; font-family: Segoe UI, system-ui, sans-serif; background:var(--bg); color:var(--text); }
+    header { padding:24px 32px 8px; }
+    h1 { margin:0; font-size:22px; }
+    p { color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:16px 32px; }
+    .card { background:var(--card); border-radius:12px; padding:16px 18px; }
+    .card h2 { margin:0 0 4px; font-size:13px; color:var(--muted); font-weight:600; }
+    .card .n { font-size:28px; font-weight:700; color:var(--ok); }
+    table { width:calc(100% - 64px); margin:8px 32px 32px; border-collapse:collapse; background:var(--card); border-radius:12px; overflow:hidden; }
+    th, td { text-align:left; padding:10px 12px; border-bottom:1px solid #334155; font-size:14px; }
+    th { color:var(--muted); font-weight:600; }
+    .bar { height:10px; background:#334155; border-radius:99px; overflow:hidden; }
+    .bar > span { display:block; height:100%; background:var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DMA Monitoring &amp; Data Visualization</h1>
+    <p>Demo for contribution folder — Dada Khalandar. PIO assumption: 12 CPU cycles / word.</p>
+  </header>
+  <section class="grid">
+    <div class="card"><h2>Total words moved</h2><div class="n">48</div></div>
+    <div class="card"><h2>Total DMA cycles</h2><div class="n">204</div></div>
+    <div class="card"><h2>CPU cycles saved</h2><div class="n">564</div></div>
+  </section>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Words</th><th>DMA cycles (4n+4)</th><th>PIO CPU (12n)</th><th>CPU saved</th><th>Share saved</th></tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <script>
+    const transfers = [
+      { id: 1, n: 8 },
+      { id: 2, n: 16 },
+      { id: 3, n: 24 },
+    ];
+    const setupCpu = 4; // CPU register writes, not in the copy loop
+    const tbody = document.getElementById("rows");
+    transfers.forEach(t => {
+      const dma = 4 * t.n + 4;
+      const pio = 12 * t.n;
+      const saved = pio - setupCpu;
+      const pct = Math.round((saved / pio) * 100);
+      tbody.insertAdjacentHTML("beforeend", `
+        <tr>
+          <td>T${t.id}</td>
+          <td>${t.n}</td>
+          <td>${dma}</td>
+          <td>${pio}</td>
+          <td>${saved}</td>
+          <td><div class="bar"><span style="width:${pct}%"></span></div></td>
+        </tr>`);
+    });
+  </script>
+</body>
+</html>
