@@ -1,4 +1,4 @@
-# Dada Khalandar - DMA Monitoring & Data Visualization
+# DMA Frontend
 
 Status: **Ready to push**
 
@@ -15,8 +15,8 @@ GitHub: [Dadu15](https://github.com/Dadu15)
 - [x] Optional: propose one extra chart or metric in a markdown file (do not edit the source yet).
 
 ## Where to put my files
-- Notes and write-ups: `team/dada-khalandar/notes/`
-- Screenshots: `team/dada-khalandar/screenshots/`
-- Extra code or demo files (optional): `team/dada-khalandar/extras/`
+- Notes and write-ups: `team/dma-frontend/notes/`
+- Screenshots: `team/dma-frontend/screenshots/`
+- Extra code or demo files (optional): `team/dma-frontend/extras/`
 
-Only add files inside `team/dada-khalandar/`. Do not edit anything outside this folder.
+Only add files inside `team/dma-frontend/`. Do not edit anything outside this folder.
